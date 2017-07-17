@@ -30,3 +30,14 @@
 *.exe
 *.out
 *.app
+
+# Ignore the build and lib dirs
+build
+lib/*
+
+# Ignore any executables
+bin/*
+
+# Ignore any environment specific files
+.DS_Store
+.vscode
