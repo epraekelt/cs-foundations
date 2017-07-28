@@ -22,12 +22,13 @@ printHelp() {
 
 buildProgram() {
   $(make clean)
-  printf "${BLUE}| Building...${NC}\n\n"
+  # printf "${BLUE}| Building...${NC}\n"
   COMPILE=$(make)
+  # printf "${BLUE}| Done${NC}\n"
 }
 
 cleanProgram() {
-  printf "${BLUE}| Cleaning up...${NC}\n"
+  # printf "${BLUE}| Cleaning up...${NC}\n"
   CLEAN=$(make clean)
 }
 
@@ -43,7 +44,7 @@ if [ $# -ne 0 ]; then
   case "$1" in
     "build") buildProgram ;;
     "start") startProgram ;;
-    "start") cleanProgram ;;
+    "clean") cleanProgram ;;
     "help") printHelp ;;
     *) printf "${RED}${BOLD}ERROR: Invalid option${BOLD_RESET}${NC}\n"; printHelp
   esac
