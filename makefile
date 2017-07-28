@@ -1,5 +1,5 @@
-HDRS=include/utils.h include/sort/insertion.h
-CPP=src/entry.cpp src/sort/insertion.cpp
+HDRS=include/utils.h include/Sort.h
+CPP=src/entry.cpp src/Sort.cpp
 
 all: $(HDRS CPP)
 	g++ -I include -o bin/Foundations $(HDRS) $(CPP)
