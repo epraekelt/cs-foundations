@@ -13,10 +13,10 @@ SIM_ARGS="-v"
 printHelp() {
   printf "${BLUE}${HR}\n| ${BOLD}Foundations Help${BOLD_RESET}\n${HR}${NC}\n"
   printf "${BLUE}|${NC}  Argument Options:\n"
-  printf "${BLUE}|${NC}    ${GREEN}-m${NC}    Compile the program (runs 'make')\n"
-  printf "${BLUE}|${NC}    ${GREEN}-s${NC}    Compile and run the program\n"
-  printf "${BLUE}|${NC}    ${GREEN}-c${NC}    Clean out the program directory (runs 'make clean')\n"
-  printf "${BLUE}|${NC}    ${GREEN}-h${NC}    Prints this help message\n"
+  printf "${BLUE}|${NC}    ${GREEN}build${NC}    Compile the program (runs 'make')\n"
+  printf "${BLUE}|${NC}    ${GREEN}start${NC}    Compile and run the program\n"
+  printf "${BLUE}|${NC}    ${GREEN}start${NC}    Clean out the program directory (runs 'make clean')\n"
+  printf "${BLUE}|${NC}    ${GREEN}help${NC}     Prints this help message\n"
   printf "${BLUE}${HR}${NC}\n"
 }
 
@@ -41,10 +41,10 @@ startProgram() {
 
 if [ $# -ne 0 ]; then
   case "$1" in
-    "-m") buildProgram ;;
-    "-s") startProgram ;;
-    "-c") cleanProgram ;;
-    "-h") printHelp ;;
+    "build") buildProgram ;;
+    "start") startProgram ;;
+    "start") cleanProgram ;;
+    "help") printHelp ;;
     *) printf "${RED}${BOLD}ERROR: Invalid option${BOLD_RESET}${NC}\n"; printHelp
   esac
 else
