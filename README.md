@@ -5,6 +5,15 @@ A project to demonstrate and simulate the foundational concepts in Computer Scie
 
 ### Concepts to be implemented:
 
+#### Data Structures
+
+* Linked List
+* Doubly Linked List
+* Skip List
+* AVL Tree
+* Binary Tree
+* Adjacency list
+
 #### Sorting
 
 * Insertion Sort
