@@ -36,7 +36,7 @@ build
 lib/*
 
 # Ignore any executables
-bin/*
+bin/Foundations
 
 # Ignore any environment specific files
 .DS_Store
