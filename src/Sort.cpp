@@ -1,11 +1,22 @@
 
 #include "Sort.h"
 
-#include <iostream>
-#include <string>
-#include <fstream>
 
-void printInfo(std::string filename) {
+void printSample(std::vector<int> arr) {
+	for (unsigned int i = 0; i < arr.size(); i++) {
+    std::cout << arr[i] << " ";
+  }
+
+  std::cout << std::endl;
+}
+
+
+
+Sort::Sort() {}
+
+Sort::~Sort() {}
+
+void Sort::printInfo(std::string filename) {
   std::string path = std::string("docs/") + filename + std::string(".md");
   std::ifstream file(path.c_str());
 
@@ -15,15 +26,8 @@ void printInfo(std::string filename) {
   }
 }
 
-
-
-
-Sort::Sort() {}
-
-Sort::~Sort() {}
-
 void Sort::insertion(std::vector<int> arr) {
-  printInfo("insertion-sort");
+  // printSample(arr);
 
   unsigned int j, temp;
 
@@ -40,6 +44,6 @@ void Sort::insertion(std::vector<int> arr) {
     }
   }
 
-  // do something with arr
+  // printSample(arr);
 }
 
