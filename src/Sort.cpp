@@ -2,33 +2,10 @@
 #include "Sort.h"
 
 
-void printSample(std::vector<int> arr) {
-	for (unsigned int i = 0; i < arr.size(); i++) {
-    std::cout << arr[i] << " ";
-  }
-
-  std::cout << std::endl;
-}
-
-
-
 Sort::Sort() {}
-
 Sort::~Sort() {}
 
-void Sort::printInfo(std::string filename) {
-  std::string path = std::string("docs/") + filename + std::string(".md");
-  std::ifstream file(path.c_str());
-
-  if (file.is_open()) {
-    std::cout << file.rdbuf() << std::endl;
-    file.close();
-  }
-}
-
 void Sort::insertion(std::vector<int> arr) {
-  // printSample(arr);
-
   unsigned int j, temp;
 
 	for (unsigned int i = 0; i < arr.size(); i++) {
@@ -43,7 +20,5 @@ void Sort::insertion(std::vector<int> arr) {
       j--;
     }
   }
-
-  // printSample(arr);
 }
 

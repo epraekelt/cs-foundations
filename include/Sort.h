@@ -11,8 +11,7 @@ class Sort {
     Sort();
     ~Sort();
 
-    void printInfo(std::string filename);
-    void insertion(std::vector<int> arr);
+    static void insertion(std::vector<int> arr);
 };
 
 #endif

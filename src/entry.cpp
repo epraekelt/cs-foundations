@@ -1,11 +1,8 @@
 
-#include <cstdlib>
+#include <cstdlib>    // atoi
 #include <iostream>
-#include <cstdio>
-#include <ctime>
-#include <iomanip>
 
-#include "utils.h"
+#include "Controller.h"
 #include "Sort.h"
 
 
@@ -29,44 +26,24 @@ std::vector<int> readFileIntoArray(std::string filename) {
   return arr;
 }
 
-
-void runInsertionSort(Sort* _Sort, std::vector<int> smallSample, std::vector<int> mediumSample, std::vector<int> largeSample) {
-  std::cout << "- - - - - - - - - - - - - - - - - - - - - - - - -" << std::endl;
-  std::clock_t start;
-  double smallRuntime, mediumRuntime, largeRuntime;
-  _Sort->printInfo("insertion-sort");
-
-  start = std::clock();
-  _Sort->insertion(smallSample);
-  smallRuntime = (std::clock() - start) / (double)CLOCKS_PER_SEC;
-
-  start = std::clock();
-  _Sort->insertion(mediumSample);
-  mediumRuntime = (std::clock() - start) / (double)CLOCKS_PER_SEC;
-
-  start = std::clock();
-  _Sort->insertion(largeSample);
-  largeRuntime = (std::clock() - start) / (double)CLOCKS_PER_SEC;
-
-  double total = smallRuntime + mediumRuntime + largeRuntime;
-
-  std::cout << std::fixed;
-  std::cout << "Small Sample Runtime (30):   " << std::setprecision(8) << smallRuntime  << "s (" << std::setprecision(2) << ((smallRuntime/total)*100)  << "%)" << std::endl;
-  std::cout << "Medium Sample Runtime (100): " << std::setprecision(8) << mediumRuntime << "s (" << std::setprecision(2) << ((mediumRuntime/total)*100) << "%)" << std::endl;
-  std::cout << "Large Sample Runtime (1000): " << std::setprecision(8) << largeRuntime  << "s (" << std::setprecision(2) << ((largeRuntime/total)*100)  << "%)" << std::endl;
+void test(std::vector<int>) {
+  std::cout << "WHAT" << std::endl;
 }
 
 
 int main(int argc, char* argv[]) {
-  Sort *_Sort = new Sort();
+  int choice = 0;
+  bool hideMenu = false;
+  bool verbose = false;
+
+  Controller _Controller = Controller(verbose);
+  Sort _Sort = Sort();
+
   std::vector<int> smallSample = readFileIntoArray("small-sample.txt");
   std::vector<int> mediumSample = readFileIntoArray("medium-sample.txt");
   std::vector<int> largeSample = readFileIntoArray("large-sample.txt");
 
   std::cout << "Welcome to Foundations." << std::endl;
-
-  int choice = 0;
-  bool hideMenu = false;
 
   while(choice != 9) {
     if (!hideMenu) {
@@ -80,7 +57,7 @@ int main(int argc, char* argv[]) {
     std::cin >> choice;
     switch(choice) {
       case MENU_INSERTION:
-        runInsertionSort(_Sort, smallSample, mediumSample, largeSample);
+        _Controller.runAlgorithm("insertion-sort.md", Sort::insertion, smallSample, mediumSample, largeSample);
         break;
       case MENU_EXIT:
         std::cout << "Exiting..." << std::endl;
