@@ -5,8 +5,8 @@
 #include "Controller.h"
 #include "Sort.h"
 
-
-#define MENU_INSERTION 1
+#define MENU_COMPLEXITY 1
+#define MENU_INSERTION 2
 #define MENU_EXIT 9
 
 
@@ -50,12 +50,16 @@ int main(int argc, char* argv[]) {
       std::cout
         << "- - - - - - - - - - - - - - - - - - - - - - - - -" << std::endl
         << "Choose an option:" << std::endl
+        << "  " << MENU_COMPLEXITY   << ") Basic Complexity Theory" << std::endl
         << "  " << MENU_INSERTION   << ") Insertion Sort" << std::endl
         << "  " << MENU_EXIT             << ") Exit" << std::endl;
     }
 
     std::cin >> choice;
     switch(choice) {
+      case MENU_COMPLEXITY:
+        _Controller.printInfo("basic-complexity.md");
+        break;
       case MENU_INSERTION:
         _Controller.runAlgorithm("insertion-sort.md", Sort::insertion, smallSample, mediumSample, largeSample);
         break;

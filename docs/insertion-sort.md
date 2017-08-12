@@ -1,4 +1,3 @@
-
 ### Insertion Sort
 
 An iterative sorting algorithm that incrementally places each element in its correct location.
