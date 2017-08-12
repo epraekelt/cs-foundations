@@ -14,6 +14,11 @@ A project to demonstrate and simulate the foundational concepts in Computer Scie
 * Binary Tree
 * Adjacency list
 
+#### Operations
+* School Method for Addition
+* School Method for Multiplication
+* Karatsuba Multiplication
+
 #### Sorting
 
 * Insertion Sort
