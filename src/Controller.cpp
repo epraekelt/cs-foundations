@@ -2,18 +2,8 @@
 #include "Controller.h"
 
 
-Controller::Controller(bool verbose) {
-  this->verbose = verbose;
-}
+Controller::Controller(bool verbose) { this->verbose = verbose; }
 Controller::~Controller() {}
-
-void Controller::printSample(std::vector<int> arr) {
-	for (unsigned int i = 0; i < arr.size(); i++) {
-    std::cout << arr[i] << " ";
-  }
-
-  std::cout << std::endl;
-}
 
 void Controller::printInfo(std::string filename) {
   std::string path = std::string("docs/") + filename;
@@ -23,6 +13,17 @@ void Controller::printInfo(std::string filename) {
     std::cout << file.rdbuf() << std::endl;
     file.close();
   }
+  else {
+    std::cout << "Error: File not found." << std::endl;
+  }
+}
+
+void Controller::printSample(std::vector<int> arr) {
+	for (unsigned int i = 0; i < arr.size(); i++) {
+    std::cout << arr[i] << " ";
+  }
+
+  std::cout << std::endl;
 }
 
 void Controller::runAlgorithm(std::string docfile, void (*algorithm)(std::vector<int>), std::vector<int> smallSample, std::vector<int> mediumSample, std::vector<int> largeSample) {
