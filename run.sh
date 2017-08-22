@@ -15,7 +15,7 @@ printHelp() {
   printf "${BLUE}|${NC}  Argument Options:\n"
   printf "${BLUE}|${NC}    ${GREEN}build${NC}    Compile the program (runs 'make')\n"
   printf "${BLUE}|${NC}    ${GREEN}start${NC}    Compile and run the program\n"
-  printf "${BLUE}|${NC}    ${GREEN}start${NC}    Clean out the program directory (runs 'make clean')\n"
+  printf "${BLUE}|${NC}    ${GREEN}clean${NC}    Clean out the program directory (runs 'make clean')\n"
   printf "${BLUE}|${NC}    ${GREEN}help${NC}     Prints this help message\n"
   printf "${BLUE}${HR}${NC}\n"
 }
