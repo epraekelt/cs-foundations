@@ -1,8 +1,7 @@
-HDRS=include/Controller.h include/Sort.h
-CPP=src/entry.cpp src/Controller.cpp src/Sort.cpp
+FILES=src/entry.cpp src/Controller.cpp src/Sort.cpp
 
-all: $(HDRS CPP)
-	g++ -I include -o bin/Foundations $(HDRS) $(CPP)
+all: $(FILES)
+	g++ -I include -o bin/Foundations $(FILES)
 
 clean:
 	rm -f bin/Foundations
