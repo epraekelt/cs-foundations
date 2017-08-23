@@ -22,3 +22,9 @@ end while
 | -------------:|:----------------:|:----------------:|:----:|
 | Comparisons   | O(n<sup>2</sup>) | O(n<sup>2</sup>) | O(n) |
 | Swaps         | O(n<sup>2</sup>) | O(n<sup>2</sup>) | O(1) |
+
+#### Explanation
+
+Insertion Sort iterates over the input data, removing an element each time and inserting it into its correct place. It finds the correct location by iteratively comparing the element to the already-placed elements.
+<br>
+This is traditionally achieved by moving up the input list and inserting elements behind the iterator. Each value is checked against the largest value in the sorted (sub-)list. If it's larger, the element is left in place. If it's smaller, the values are swapped and the comparison carried out again. In this way, the smaller value keeps moving down the list until it is in place.
