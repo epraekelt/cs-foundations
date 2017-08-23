@@ -18,6 +18,7 @@ end while
 
 #### Performance
 
-Average-Case: O(n<sup>2</sup>) comparisons and swaps
-Worst-Case:   O(n<sup>2</sup>) comparisons and swaps
-Best-Case:    O(n) comparisons and O(1) swaps
+|               | Average          | Worst            | Best |
+| -------------:|:----------------:|:----------------:|:----:|
+| Comparisons   | O(n<sup>2</sup>) | O(n<sup>2</sup>) | O(n) |
+| Swaps         | O(n<sup>2</sup>) | O(n<sup>2</sup>) | O(1) |
