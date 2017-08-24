@@ -1,5 +1,5 @@
-#ifndef SORT_H
-#define SORT_H
+#ifndef __CSFOUNDATIONS_SORT_H
+#define __CSFOUNDATIONS_SORT_H
 
 #include <vector>
 #include <string>
