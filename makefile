@@ -1,7 +1,7 @@
-FILES=src/entry.cpp src/Controller.cpp src/Sort.cpp
+FILES=src/entry.cpp src/Controller.cpp
 
 all: $(FILES)
-	g++ -I include -o bin/Foundations $(FILES)
+	g++ -std=c++11 -I include -o bin/Foundations $(FILES)
 
 clean:
 	rm -f bin/Foundations
