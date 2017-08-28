@@ -1,8 +1,7 @@
 #include "Controller.h"
 
-
-csfoundation::Controller::Controller(bool verbose) { 
-    this->verbose = verbose; 
+csfoundation::Controller::Controller(bool verbose) {
+    this->verbose = verbose;
 }
 
 csfoundation::Controller::~Controller() {
@@ -21,5 +20,3 @@ void csfoundation::Controller::printInfo(std::string filename) {
     std::cout << "Error: File not found." << std::endl;
   }
 }
-
-
