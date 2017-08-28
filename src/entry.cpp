@@ -26,18 +26,12 @@ std::vector<int> readFileIntoArray(std::string filename) {
   return arr;
 }
 
-void test(std::vector<int>) {
-  std::cout << "WHAT" << std::endl;
-}
-
-
 int main(int argc, char* argv[]) {
   int choice = 0;
   bool hideMenu = false;
   bool verbose = false;
 
-  Controller _Controller = Controller(verbose);
-  Sort _Sort = Sort();
+  csfoundation::Controller _Controller = csfoundation::Controller(verbose);
 
   std::vector<int> smallSample = readFileIntoArray("small-sample.txt");
   std::vector<int> mediumSample = readFileIntoArray("medium-sample.txt");
@@ -61,7 +55,10 @@ int main(int argc, char* argv[]) {
         _Controller.printInfo("basic-complexity.md");
         break;
       case MENU_INSERTION:
-        _Controller.runAlgorithm("insertion-sort.md", Sort::insertion, smallSample, mediumSample, largeSample);
+        _Controller.printInfo("insertion-sort.md");
+        _Controller.runAlgorithm<int>(csfoundation::sort::insertion<int>, smallSample);
+        _Controller.runAlgorithm<int>(csfoundation::sort::insertion<int>, mediumSample);
+        _Controller.runAlgorithm<int>(csfoundation::sort::insertion<int>, largeSample);
         break;
       case MENU_EXIT:
         std::cout << "Exiting..." << std::endl;
