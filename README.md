@@ -3,32 +3,30 @@
 
 A project to demonstrate and simulate the foundational concepts in Computer Science.
 
-### Concepts to be implemented:
+### Data Structures
 
-#### Data Structures
+- [ ] Linked List
+- [ ] Doubly Linked List
+- [ ] Skip List
+- [ ] AVL Tree
+- [ ] Binary Tree
+- [ ] Adjacency list
 
-* Linked List
-* Doubly Linked List
-* Skip List
-* AVL Tree
-* Binary Tree
-* Adjacency list
+### Sorting
 
-#### Operations
-* School Method for Addition
-* School Method for Multiplication
-* Karatsuba Multiplication
+- [x] Insertion Sort
+- [ ] Selection Sort
+- [ ] Merge Sort
+- [ ] Heapsort
+- [ ] Quicksort
+- [ ] Bubble Sort
 
-#### Sorting
+### Searching
 
-* Insertion Sort
-* Selection Sort
-* Merge Sort
-* Heapsort
-* Quicksort
-* Bubble Sort
+- [ ] Depth-First Search (DFS)
+- [ ] Breadth-First Search (DFS)
 
-#### Searching
-
-* Depth-First Search (DFS)
-* Breadth-First Search (DFS)
+### Operations
+- [ ] School Method for Addition
+- [ ] School Method for Multiplication
+- [ ] Karatsuba Multiplication
