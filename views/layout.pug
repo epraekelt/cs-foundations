@@ -10,11 +10,16 @@ html
     nav.navbar.navbar-inverse.navbar-fixed-top
       div.container
         div.navbar-header
-          span.header-title Computer Science Foundations
+          a.header-title(href="/") Computer Science Foundations
         div#navbar.collapse.navbar-collapse
           ul.nav.navbar-nav
-            li
-              a(href="/") Home
+            li.dropdown
+              a.dropdown-toggle(data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false") Basics <span class="caret"></span>
+              ul.dropdown-menu
+                li
+                  a(href="/basics/complexity") Algorithm Complexity
+                li
+                  a(href="/basics/heap-stack") Heap / Stack
             li.dropdown
               a.dropdown-toggle(data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false") Data Structures <span class="caret"></span>
               ul.dropdown-menu
