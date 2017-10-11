@@ -10,6 +10,7 @@ var basics = require('./routes/basics');
 var structures = require('./routes/structures');
 var sorting = require('./routes/sorting');
 var searching = require('./routes/searching');
+var operations = require('./routes/operations');
 
 var app = express();
 
@@ -30,6 +31,7 @@ app.use('/basics', basics);
 app.use('/structures', structures);
 app.use('/sorting', sorting);
 app.use('/searching', searching);
+app.use('/operations', operations);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
