@@ -25,3 +25,12 @@ a {
   line-height: 20px;
   text-decoration: none;
 }
+
+.section {
+  border-top: 1px solid #d4d4d4;
+  padding: 0.5em 0;
+}
+
+.section p {
+  margin: 0.5em 0;
+}
