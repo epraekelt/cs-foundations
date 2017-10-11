@@ -34,3 +34,7 @@ a {
 .section p {
   margin: 0.5em 0;
 }
+
+.table, .table thead th {
+  text-align: center;
+}
