@@ -41,6 +41,8 @@ block content
         a(data-toggle="tab" href="#cpp") C++
       li
         a(data-toggle="tab" href="#java") Java
+      li
+        a(data-toggle="tab" href="#python") Python
     div.tab-content
       div#pseudo.tab-pane.fade.in.active
         pre.code-block
@@ -104,6 +106,23 @@ block content
             |     arr[j+1] = key;
             |   }
             | }
+      div#python.tab-pane.fade.in
+        pre.code-block
+          code
+            | def insertion_sort(array):
+            |   for i in range(len(array)):
+            |     j = i
+            |     while j > 0 and array[j - 1] > array[j]:
+            |       array = swap(array, j, j - 1)
+            |       j -= 1
+            |
+            |   return array
+            |
+            | def swap(array, i, j):
+            |   placeholder = array[i]
+            |   array[i] = array[j]
+            |   array[j] = placeholder
+            |   return array
 
   div.section
     script(src="/javascripts/sorting/insertion.js")
