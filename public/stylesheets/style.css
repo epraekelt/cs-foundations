@@ -38,3 +38,15 @@ a {
 .table, .table thead th {
   text-align: center;
 }
+
+.code-block {
+  display: block;
+  padding: 0;
+  margin: 0;
+  /* font-size: 13px; */
+  /* line-height: 1.42857143; */
+  color: black;
+  background-color: white;
+  /* border: 0; */
+  border-radius: 0 0 4px 4px;
+}

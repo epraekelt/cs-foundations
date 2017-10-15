@@ -1,0 +1,45 @@
+
+script(src="/javascripts/demo.js")
+link(rel='stylesheet', href='/stylesheets/demo.css')
+form.form
+  div.form-group
+    table.table.table-bordered
+      thead
+        tr.active
+          th(colspan="5") Sample Sizes
+      tbody
+        tr
+          td.col-xs-2 Extra Small
+          td.col-xs-2 Small
+          td.col-xs-2 Medium
+          td.col-xs-2 Large
+          td.col-xs-2 Extra Large
+        tr
+          td
+            div#xsmallInput.show
+              label(for="xsmall" style="width: 100%;")
+                input#xsmall(name="xsmall" type="checkbox" checked="true")
+            div#xsmallText.hide
+          td
+            div#smallInput.show
+              label(for="small" style="width: 100%;")
+                input#small(name="small" type="checkbox" checked="true")
+            div#smallText.hide
+          td
+            div#mediumInput.show
+              label(for="medium" style="width: 100%;")
+                input#medium(name="medium" type="checkbox" checked="true")
+            div#mediumText.hide
+          td
+            div#largeInput.show
+              label(for="large" style="width: 100%;")
+                input#large(name="large" type="checkbox" checked="true")
+            div#largeText.hide
+          td
+            div#xlargeInput.show
+              label(for="xlarge" style="width: 100%; z-index: 10")
+                input#xlarge(name="xlarge" type="checkbox" checked="true")
+            div#xlargeText.hide
+  div.form-group(style="text-align: right;")
+    button#reset.btn.btn-warning(type="button" style="margin-right: 1em" onclick="resetDemo()") Reset
+    button#submit.btn.btn-success(type="button" onclick="runAlgo()") Run

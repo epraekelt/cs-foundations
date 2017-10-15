@@ -11,21 +11,66 @@ block content
     p This is traditionally achieved by moving up the input list and inserting elements behind the iterator. Each value is checked against the largest value in the sorted (sub-)list. If it's larger, the element is left in place. If it's smaller, the values are swapped and the comparison carried out again. In this way, the smaller value keeps moving down the list until it is in place.</p>
 
   div.section
-    h4 Pseudo Code
-    pre
-      | i ← 1
-      | while i < length(A)
-      |   j ← i
-      |   while j > 0 and A[j] < A[j-1]
-      |     swap A[j] and A[j-1]
-      |     j ← j - 1
-      |   end while
-      |   i ← i + 1
-      | end while
+    ul.nav.nav-tabs
+      li.active
+        a(data-toggle="tab" href="#pseudo") Pseudo
+      li
+        a(data-toggle="tab" href="#js") JavaScript
+      li
+        a(data-toggle="tab" href="#cpp") C++
+    div.tab-content
+      div#pseudo.tab-pane.fade.in.active
+        pre.code-block
+          code
+            | i ← 1
+            | while i < length(A)
+            |   j ← i
+            |   while j > 0 and A[j] < A[j-1]
+            |     swap A[j] and A[j-1]
+            |     j ← j - 1
+            |   end while
+            |   i ← i + 1
+            | end while
+      div#js.tab-pane.fade.in
+        pre.code-block
+          code.js
+            | function insertionSort() {
+            |   var length = array.length;
+            |
+            |   for(var i = 1; i < length; i++) {
+            |     var temp = array[i];
+            |     for(var j = i - 1; j >= 0 && array[j] > temp; j--) {
+            |       array[j+1] = array[j];
+            |     }
+            |     array[j+1] = temp;
+            |   }
+            |
+            |   return array;
+            | }
+      div#cpp.tab-pane.fade.in
+        pre.code-block
+          code
+            | void insertionSort(vector&#60;int&#62; &arr) {
+            |   int key, j;
+            |
+            |   for(int i = 1; i < arr.size(); i++) {
+            |     key = arr[i];
+            |     j = i - 1;
+            |
+            |     while(j >= 0 && arr[j] > key) {
+            |       arr[j+1] = arr[j];
+            |       j--;
+            |     }
+            |
+            |     arr[j+1] = key;
+            |   }
+            | }
 
   div.section
+    script(src="/javascripts/sorting/insertion.js")
     h4 Demonstration
     p Insert dynamic demo graphics and stuff here
+    include ../demo.pug
 
   div.section
     h4 Performance
