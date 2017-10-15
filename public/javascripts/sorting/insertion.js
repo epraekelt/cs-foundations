@@ -1,7 +1,5 @@
 
 let insertion = (array) => {
-  console.log('insertion sort');
-
   var length = array.length;
 
   for(var i = 1; i < length; i++) {

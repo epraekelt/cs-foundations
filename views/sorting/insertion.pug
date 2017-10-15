@@ -11,6 +11,27 @@ block content
     p This is traditionally achieved by moving up the input list and inserting elements behind the iterator. Each value is checked against the largest value in the sorted (sub-)list. If it's larger, the element is left in place. If it's smaller, the values are swapped and the comparison carried out again. In this way, the smaller value keeps moving down the list until it is in place.</p>
 
   div.section
+    h4 Performance
+    table.table.table-bordered
+      thead
+        tr.active
+          th.col-xs-3 Operation
+          th.col-xs-3 Average
+          th.col-xs-3 Worst
+          th.col-xs-3 Best
+      tbody
+        tr
+          td Comparisons
+          td O(n<sup>2</sup>)
+          td O(n<sup>2</sup>)
+          td O(n)
+        tr
+          td Swaps
+          td O(n<sup>2</sup>)
+          td O(n<sup>2</sup>)
+          td O(1)
+
+  div.section
     ul.nav.nav-tabs
       li.active
         a(data-toggle="tab" href="#pseudo") Pseudo
@@ -18,6 +39,8 @@ block content
         a(data-toggle="tab" href="#js") JavaScript
       li
         a(data-toggle="tab" href="#cpp") C++
+      li
+        a(data-toggle="tab" href="#java") Java
     div.tab-content
       div#pseudo.tab-pane.fade.in.active
         pre.code-block
@@ -33,7 +56,7 @@ block content
             | end while
       div#js.tab-pane.fade.in
         pre.code-block
-          code.js
+          code
             | function insertionSort() {
             |   var length = array.length;
             |
@@ -65,30 +88,25 @@ block content
             |     arr[j+1] = key;
             |   }
             | }
+      div#java.tab-pane.fade.in
+        pre.code-block
+          code
+            | void insertionSort(int arr[]) {
+            |   for (int i = 1; i < arr.length; ++i) {
+            |     int key = arr[i];
+            |     int j = i - 1;
+            |
+            |     while (j >= 0 && arr[j] > key) {
+            |       arr[j + 1] = arr[j];
+            |       j = j - 1;
+            |     }
+            |
+            |     arr[j+1] = key;
+            |   }
+            | }
 
   div.section
     script(src="/javascripts/sorting/insertion.js")
     h4 Demonstration
     p Insert dynamic demo graphics and stuff here
     include ../demo.pug
-
-  div.section
-    h4 Performance
-    table.table.table-bordered
-      thead
-        tr.active
-          th.col-xs-3 Operation
-          th.col-xs-3 Average
-          th.col-xs-3 Worst
-          th.col-xs-3 Best
-      tbody
-        tr
-          td Comparisons
-          td O(n<sup>2</sup>)
-          td O(n<sup>2</sup>)
-          td O(n)
-        tr
-          td Swaps
-          td O(n<sup>2</sup>)
-          td O(n<sup>2</sup>)
-          td O(1)
