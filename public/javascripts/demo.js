@@ -18,6 +18,9 @@ var demoChart = new Chart(ctx, {
         }]
     },
     options: {
+      legend: {
+          display: false
+      },
       scales: {
         yAxes: [{
           display : false
@@ -34,9 +37,12 @@ var demoChart = new Chart(ctx, {
     }
 });
 
+const SLOW = 900;
+const MEDIUM = 400;
+const FAST = 150;
 
 function wrapAlgo(algo) {
-  algo(demoChart, [...samples.small], 900);
+  algo(demoChart, [...samples.small], MEDIUM);
 }
 
 
