@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "cp -r public/* . && node app.js"
+    "start": "mkdir -p ./cs-foundations && cp -r public/* ./cs-foundations/ && node app.js"
   },
   "dependencies": {
     "body-parser": "~1.18.2",
