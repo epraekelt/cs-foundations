@@ -1,0 +1,131 @@
+extends ../layout
+
+block content
+  div
+    h2 Insertion Sort
+    p An iterative sorting algorithm that incrementally places each element in its correct location.
+
+  div.section
+    h4 Explanation
+    p Insertion Sort iterates over the input data, removing an element each time and inserting it into its correct place. It finds the correct location by iteratively comparing the element to the already-placed elements.</p>
+    p This is traditionally achieved by moving up the input list and inserting elements behind the iterator. Each value is checked against the largest value in the sorted (sub-)list. If it's larger, the element is left in place. If it's smaller, the values are swapped and the comparison carried out again. In this way, the smaller value keeps moving down the list until it is in place.</p>
+
+  div.section
+    h4 Performance
+    table.table.table-bordered
+      thead
+        tr.active
+          th.col-xs-3 Operation
+          th.col-xs-3 Average
+          th.col-xs-3 Worst
+          th.col-xs-3 Best
+      tbody
+        tr
+          td Comparisons
+          td O(n<sup>2</sup>)
+          td O(n<sup>2</sup>)
+          td O(n)
+        tr
+          td Swaps
+          td O(n<sup>2</sup>)
+          td O(n<sup>2</sup>)
+          td O(1)
+
+  div.section
+    ul.nav.nav-tabs
+      li.active
+        a(data-toggle="tab" href="#pseudo") Pseudo
+      li
+        a(data-toggle="tab" href="#js") JavaScript
+      li
+        a(data-toggle="tab" href="#cpp") C++
+      li
+        a(data-toggle="tab" href="#java") Java
+      li
+        a(data-toggle="tab" href="#python") Python
+    div.tab-content
+      div#pseudo.tab-pane.fade.in.active
+        pre.code-block
+          code
+            | i ← 1
+            | while i < length(A)
+            |   j ← i
+            |   while j > 0 and A[j] < A[j-1]
+            |     swap A[j] and A[j-1]
+            |     j ← j - 1
+            |   end while
+            |   i ← i + 1
+            | end while
+      div#js.tab-pane.fade.in
+        pre.code-block
+          code
+            | function insertionSort() {
+            |   var length = array.length;
+            |
+            |   for(var i = 1; i < length; i++) {
+            |     var temp = array[i];
+            |     for(var j = i - 1; j >= 0 && array[j] > temp; j--) {
+            |       array[j+1] = array[j];
+            |     }
+            |     array[j+1] = temp;
+            |   }
+            |
+            |   return array;
+            | }
+      div#cpp.tab-pane.fade.in
+        pre.code-block
+          code
+            | void insertionSort(vector&#60;int&#62; &arr) {
+            |   int key, j;
+            |
+            |   for(int i = 1; i < arr.size(); i++) {
+            |     key = arr[i];
+            |     j = i - 1;
+            |
+            |     while(j >= 0 && arr[j] > key) {
+            |       arr[j+1] = arr[j];
+            |       j--;
+            |     }
+            |
+            |     arr[j+1] = key;
+            |   }
+            | }
+      div#java.tab-pane.fade.in
+        pre.code-block
+          code
+            | void insertionSort(int arr[]) {
+            |   for (int i = 1; i < arr.length; ++i) {
+            |     int key = arr[i];
+            |     int j = i - 1;
+            |
+            |     while (j >= 0 && arr[j] > key) {
+            |       arr[j + 1] = arr[j];
+            |       j = j - 1;
+            |     }
+            |
+            |     arr[j+1] = key;
+            |   }
+            | }
+      div#python.tab-pane.fade.in
+        pre.code-block
+          code
+            | def insertion_sort(array):
+            |   for i in range(len(array)):
+            |     j = i
+            |     while j > 0 and array[j - 1] > array[j]:
+            |       array = swap(array, j, j - 1)
+            |       j -= 1
+            |
+            |   return array
+            |
+            | def swap(array, i, j):
+            |   placeholder = array[i]
+            |   array[i] = array[j]
+            |   array[j] = placeholder
+            |   return array
+
+  div.section
+    script(src="/javascripts/sorting/insertion.js")
+    h4 Demonstration
+    p Insert dynamic demo graphics and stuff here
+    include ../demo.pug

@@ -10,11 +10,11 @@ A project to demonstrate and simulate the foundational concepts in Computer Scie
 - [ ] Skip List
 - [ ] AVL Tree
 - [ ] Binary Tree
-- [ ] Adjacency list
+- [ ] Adjacency List
 
 ### Sorting
 
-- [x] Insertion Sort
+- [ ] Insertion Sort
 - [ ] Selection Sort
 - [ ] Merge Sort
 - [ ] Heapsort

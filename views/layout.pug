@@ -1,0 +1,75 @@
+doctype html
+html
+  head
+    title Computer Science Foundations
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous")
+    script(src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js")
+    script(src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js")
+
+    link(rel="stylesheet" href="/highlightjs/styles/github.css")
+    script(src="/highlightjs/highlight.pack.js")
+    <script>hljs.initHighlightingOnLoad();</script>
+  body
+    nav.navbar.navbar-inverse.navbar-fixed-top
+      div.container
+        div.navbar-header
+          a.header-title(href="/") Computer Science Foundations
+        div#navbar.collapse.navbar-collapse
+          ul.nav.navbar-nav
+            li.dropdown
+              a.dropdown-toggle(data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false") Basics <span class="caret"></span>
+              ul.dropdown-menu
+                li
+                  a(href="/basics/complexity") Complexity Theory
+                li
+                  a(href="/basics/heap-stack") Heap / Stack
+            li.dropdown
+              a.dropdown-toggle(data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false") Data Structures <span class="caret"></span>
+              ul.dropdown-menu
+                li
+                  a(href="/structures/linked-list") Linked List
+                li
+                  a(href="/structures/doubly-linked-list") Doubly Linked List
+                li
+                  a(href="/structures/skip-list") Skip List
+                li
+                  a(href="/structures/avl-tree") AVL Tree
+                li
+                  a(href="/structures/binary-tree") Binary Tree
+                li
+                  a(href="/structures/adjacency-list") Adjacency List
+            li.dropdown
+              a.dropdown-toggle(data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false") Sorting <span class="caret"></span>
+              ul.dropdown-menu
+                li
+                  a(href="/sorting/insertion") Insertion Sort
+                li
+                  a(href="/sorting/selection") Selection Sort
+                li
+                  a(href="/sorting/merge") Merge Sort
+                li
+                  a(href="/sorting/heapsort") Heapsort
+                li
+                  a(href="/sorting/quicksort") Quicksort
+                li
+                  a(href="/sorting/bubble") Bubble Sort
+            li.dropdown
+              a.dropdown-toggle(data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false") Searching <span class="caret"></span>
+              ul.dropdown-menu
+                li
+                  a(href="/searching/dfs") Depth-First Search (DFS)
+                li
+                  a(href="/searching/bfs") Breadth-First Search (DFS)
+            li.dropdown
+              a.dropdown-toggle(data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false") Operations <span class="caret"></span>
+              ul.dropdown-menu
+                li
+                  a(href="/operations/school-addition") School Method for Addition
+                li
+                  a(href="/operations/school-multiplication") School Method for Multiplication
+                li
+                  a(href="/operations/karatsuba") Karatsuba Multiplication
+
+    div.container
+      block content

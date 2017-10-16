@@ -1,0 +1,15 @@
+#xsmallInput, #smallInput, #mediumInput, #largeInput, #xlargeInput {
+  height: 2em;
+}
+
+#xsmallText, #smallText, #mediumText, #largeText, #xlargeText {
+  height: 2em;
+}
+
+.hide {
+  display: none;
+}
+
+.show {
+  display: block;
+}
