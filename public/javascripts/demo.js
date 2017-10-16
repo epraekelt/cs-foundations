@@ -7,6 +7,43 @@ let samples = {
 };
 
 
+var ctx = document.getElementById("demoChart").getContext('2d');
+var demoChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: [...samples.small],
+        datasets: [{
+            label: 'Small Sample (50 unique integers)',
+            data: [...samples.small],
+            backgroundColor: 'rgba(54, 162, 235, 0.2)'
+        }]
+    },
+    options: {
+      scales: {
+        yAxes: [{
+          display : false
+        }],
+        xAxes: [{
+          gridLines : {
+            display : false
+          }
+        }]
+      },
+      tooltips: {
+        enabled: false
+      }
+    }
+});
+
+
+function wrapAlgo(algo) {
+  algo(demoChart, [...samples.small], 900);
+}
+
+
+
+
+
 function getFormElements() {
   return [
     document.getElementById('xsmall'),
@@ -49,16 +86,16 @@ function resetDemo() {
   });
 }
 
-function wrapAlgo(algo) {
-  let elements = getFormElements();
-  toggleElementsDisabled(elements, true);
+// function wrapAlgo(algo) {
+//   let elements = getFormElements();
+//   toggleElementsDisabled(elements, true);
 
-  elements.forEach(element => {
-    if (element.checked) {
-      let start = performance.now();
-      algo([ ...samples[element.name] ]);
-      let end = performance.now();
-      setText(element.name, end - start);
-    }
-  });
-}
+//   elements.forEach(element => {
+//     if (element.checked) {
+//       let start = performance.now();
+//       algo([ ...samples[element.name] ]);
+//       let end = performance.now();
+//       setText(element.name, end - start);
+//     }
+//   });
+// }

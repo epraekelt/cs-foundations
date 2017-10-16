@@ -1,6 +1,14 @@
 
-script(src="/javascripts/demo.js")
+canvas#demoChart
+
 link(rel='stylesheet', href='/stylesheets/demo.css')
+script(src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.0/Chart.min.js")
+script(src="/javascripts/demo.js")
+
+button#run.btn.btn-success(type="button" onclick="runAlgo()") Run
+
+<br>
+
 form.form
   div.form-group
     table.table.table-bordered
