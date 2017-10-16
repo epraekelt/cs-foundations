@@ -1,0 +1,60 @@
+<!DOCTYPE html><html><head><title>Computer Science Foundations</title><link rel="stylesheet" href="/stylesheets/style.css"><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script><link rel="stylesheet" href="/highlightjs/styles/github.css"><script src="/highlightjs/highlight.pack.js"></script><script>hljs.initHighlightingOnLoad();</script></head><body><nav class="navbar navbar-inverse navbar-fixed-top"><div class="container"><div class="navbar-header"><a class="header-title" href="/">Computer Science Foundations</a></div><div class="collapse navbar-collapse" id="navbar"><ul class="nav navbar-nav"><li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Basics <span class="caret"></span></a><ul class="dropdown-menu"><li><a href="/basics/complexity">Complexity Theory</a></li><li><a href="/basics/heap-stack">Heap / Stack</a></li></ul></li><li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Data Structures <span class="caret"></span></a><ul class="dropdown-menu"><li><a href="/structures/linked-list">Linked List</a></li><li><a href="/structures/doubly-linked-list">Doubly Linked List</a></li><li><a href="/structures/skip-list">Skip List</a></li><li><a href="/structures/avl-tree">AVL Tree</a></li><li><a href="/structures/binary-tree">Binary Tree</a></li><li><a href="/structures/adjacency-list">Adjacency List</a></li></ul></li><li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Sorting <span class="caret"></span></a><ul class="dropdown-menu"><li><a href="/sorting/insertion">Insertion Sort</a></li><li><a href="/sorting/selection">Selection Sort</a></li><li><a href="/sorting/merge">Merge Sort</a></li><li><a href="/sorting/heapsort">Heapsort</a></li><li><a href="/sorting/quicksort">Quicksort</a></li><li><a href="/sorting/bubble">Bubble Sort</a></li></ul></li><li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Searching <span class="caret"></span></a><ul class="dropdown-menu"><li><a href="/searching/dfs">Depth-First Search (DFS)</a></li><li><a href="/searching/bfs">Breadth-First Search (DFS)</a></li></ul></li><li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Operations <span class="caret"></span></a><ul class="dropdown-menu"><li><a href="/operations/school-addition">School Method for Addition</a></li><li><a href="/operations/school-multiplication">School Method for Multiplication</a></li><li><a href="/operations/karatsuba">Karatsuba Multiplication</a></li></ul></li></ul></div></div></nav><div class="container"><div><h2>Insertion Sort</h2><p>An iterative sorting algorithm that incrementally places each element in its correct location.</p></div><div class="section"><h4>Explanation</h4><p>Insertion Sort iterates over the input data, removing an element each time and inserting it into its correct place. It finds the correct location by iteratively comparing the element to the already-placed elements.</p></p><p>This is traditionally achieved by moving up the input list and inserting elements behind the iterator. Each value is checked against the largest value in the sorted (sub-)list. If it's larger, the element is left in place. If it's smaller, the values are swapped and the comparison carried out again. In this way, the smaller value keeps moving down the list until it is in place.</p></p></div><div class="section"><h4>Performance</h4><table class="table table-bordered"><thead><tr class="active"><th class="col-xs-3">Operation</th><th class="col-xs-3">Average</th><th class="col-xs-3">Worst</th><th class="col-xs-3">Best</th></tr></thead><tbody><tr><td>Comparisons</td><td>O(n<sup>2</sup>)</td><td>O(n<sup>2</sup>)</td><td>O(n)</td></tr><tr><td>Swaps</td><td>O(n<sup>2</sup>)</td><td>O(n<sup>2</sup>)</td><td>O(1)</td></tr></tbody></table></div><div class="section"><ul class="nav nav-tabs"><li class="active"><a data-toggle="tab" href="#pseudo">Pseudo</a></li><li><a data-toggle="tab" href="#js">JavaScript</a></li><li><a data-toggle="tab" href="#cpp">C++</a></li><li><a data-toggle="tab" href="#java">Java</a></li><li><a data-toggle="tab" href="#python">Python</a></li></ul><div class="tab-content"><div class="tab-pane fade in active" id="pseudo"><pre class="code-block"><code>i ← 1
+while i < length(A)
+  j ← i
+  while j > 0 and A[j] < A[j-1]
+    swap A[j] and A[j-1]
+    j ← j - 1
+  end while
+  i ← i + 1
+end while</code></pre></div><div class="tab-pane fade in" id="js"><pre class="code-block"><code>function insertionSort() {
+  var length = array.length;
+
+  for(var i = 1; i < length; i++) {
+    var temp = array[i];
+    for(var j = i - 1; j >= 0 && array[j] > temp; j--) {
+      array[j+1] = array[j];
+    }
+    array[j+1] = temp;
+  }
+
+  return array;
+}</code></pre></div><div class="tab-pane fade in" id="cpp"><pre class="code-block"><code>void insertionSort(vector&#60;int&#62; &arr) {
+  int key, j;
+
+  for(int i = 1; i < arr.size(); i++) {
+    key = arr[i];
+    j = i - 1;
+
+    while(j >= 0 && arr[j] > key) {
+      arr[j+1] = arr[j];
+      j--;
+    }
+
+    arr[j+1] = key;
+  }
+}</code></pre></div><div class="tab-pane fade in" id="java"><pre class="code-block"><code>void insertionSort(int arr[]) {
+  for (int i = 1; i < arr.length; ++i) {
+    int key = arr[i];
+    int j = i - 1;
+
+    while (j >= 0 && arr[j] > key) {
+      arr[j + 1] = arr[j];
+      j = j - 1;
+    }
+
+    arr[j+1] = key;
+  }
+}</code></pre></div><div class="tab-pane fade in" id="python"><pre class="code-block"><code>def insertion_sort(array):
+  for i in range(len(array)):
+    j = i
+    while j > 0 and array[j - 1] > array[j]:
+      array = swap(array, j, j - 1)
+      j -= 1
+
+  return array
+
+def swap(array, i, j):
+  placeholder = array[i]
+  array[i] = array[j]
+  array[j] = placeholder
+  return array</code></pre></div></div></div><div class="section"><script src="/javascripts/sorting/insertion.js"></script><h4>Demonstration</h4><p>Insert dynamic demo graphics and stuff here</p><script src="/javascripts/demo.js"></script><link rel="stylesheet" href="/stylesheets/demo.css"><form class="form"><div class="form-group"><table class="table table-bordered"><thead><tr class="active"><th colspan="5">Sample Sizes</th></tr></thead><tbody><tr><td class="col-xs-2">Extra Small</td><td class="col-xs-2">Small</td><td class="col-xs-2">Medium</td><td class="col-xs-2">Large</td><td class="col-xs-2">Extra Large</td></tr><tr><td><div class="show" id="xsmallInput"><label for="xsmall" style="width: 100%;"><input id="xsmall" name="xsmall" type="checkbox" checked="true"></label></div><div class="hide" id="xsmallText"></div></td><td><div class="show" id="smallInput"><label for="small" style="width: 100%;"><input id="small" name="small" type="checkbox" checked="true"></label></div><div class="hide" id="smallText"></div></td><td><div class="show" id="mediumInput"><label for="medium" style="width: 100%;"><input id="medium" name="medium" type="checkbox" checked="true"></label></div><div class="hide" id="mediumText"></div></td><td><div class="show" id="largeInput"><label for="large" style="width: 100%;"><input id="large" name="large" type="checkbox" checked="true"></label></div><div class="hide" id="largeText"></div></td><td><div class="show" id="xlargeInput"><label for="xlarge" style="width: 100%; z-index: 10;"><input id="xlarge" name="xlarge" type="checkbox" checked="true"></label></div><div class="hide" id="xlargeText"></div></td></tr></tbody></table></div><div class="form-group" style="text-align: right;"><button class="btn btn-warning" id="reset" type="button" style="margin-right: 1em;" onclick="resetDemo()">Reset</button><button class="btn btn-success" id="submit" type="button" onclick="runAlgo()">Run</button></div></form></div></div></body></html>
