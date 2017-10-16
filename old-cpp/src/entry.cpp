@@ -1,74 +1,124 @@
-
 #include <cstdlib>    // atoi
 #include <iostream>
+#include <string>
+#include "../term-react/src/term-react/term-react.hpp"
+#include "../term-react/src/term-react/termbox/termbox.cpp"
+#include "../term-react/src/term-react/termbox/utf8.cpp"
+#include "../term-react/src/term-react/dangerous-pretty-macros.h"
 
-#include "Controller.h"
-#include "Sort.h"
+namespace tr = termreact;
 
-#define MENU_COMPLEXITY 1
-#define MENU_INSERTION 2
-#define MENU_EXIT 9
+InitReducer(locationReducer, () { return "/"; });
 
+enum class HomeMenu {
+  DataStructure,
+  Sorting,
+  Searching,
+  Maths
+};
 
-std::vector<int> readFileIntoArray(std::string filename) {
-  std::vector<int> arr;
+enum class HomeAction {
+  Select
+};
 
-  std::string path = std::string("bin/") + filename;
-  std::ifstream file(path.c_str());
+InitReducer(homeReducer, () { return HomeMenu::DataStructure; });
+Reducer(homeReducer, (HomeAction::Select), (HomeMenu, HomeMenu selected) {
+  return selected;
+});
 
-  std::string line;
+DeclareStore(Store,
+  (std::string, location, locationReducer)
+  (HomeMenu, homeSelected, homeReducer)
+);
 
-  while (getline(file, line)) {
-    int value = std::atoi(line.c_str());
-    arr.push_back(value);
+ComponentClass(App) {
+  DeclareProps(
+    (std::string, location)
+    (HomeMenu, selected)
+  );
+
+  MapStoreStateToProps(
+    (location, State(location))
+    (selected, State(homeSelected))
+  );
+
+  Render() {
+    Component(tr::Box, Attr()) {
+      Component(tr::Box, "Nav", Attr(
+        (getHeight, [] (int, int h) { return h / 20;})
+        (border_bottom, 0x2594)
+      )) {
+        Component(tr::Box, "BackButton", Attr(
+          (getWidth, [] (int w, int) { return w / 5; })
+          (text, "<<= BACK")
+          (border_right, 0x258F)
+        )) { NoChildren };
+        Component(tr::Box, "Location", Attr(
+          (getLeft, [] (int w, int) { return w / 5; })
+          (getWidth, [] (int w, int) { return w - w / 5; })
+          (text, Props(location) == "/" ? "Home" : "Unknown")
+        )) { NoChildren };
+      };
+      if (Props(location) == "/") {
+        Component(tr::Box, "Home", Attr(
+          (getTop, [] (int, int h) { return h / 20 + 5;})
+          (getWidth, [] (int w, int) { return w / 5; })
+          (getLeft, [] (int w, int) { return (w - w / 5) / 2; })
+        )) {
+          Component(tr::Box, "DataStructure", Attr(
+            (text, "Data Structure")
+            (top, 0)
+            (height, 5)
+            (focusable, true)
+            (onFocus, [this] () { Dispatch(HomeAction::Select)(HomeMenu::DataStructure); })
+            (border, Props(selected) == HomeMenu::DataStructure ? '*' : '+')
+            (frontground, Props(selected) == HomeMenu::DataStructure ? TB_BOLD | TB_UNDERLINE : TB_DEFAULT)
+          )) { NoChildren};
+          Component(tr::Box, "Sorting", Attr(
+            (text, "Sorting")
+            (top, 10)
+            (height, 5)
+            (focusable, true)
+            (onFocus, [this] () { Dispatch(HomeAction::Select)(HomeMenu::Sorting); })
+            (border, Props(selected) == HomeMenu::Sorting ? '*' : '+')
+            (frontground, Props(selected) == HomeMenu::Sorting ? TB_BOLD | TB_UNDERLINE : TB_DEFAULT)
+          )) { NoChildren};
+          Component(tr::Box, "Searching", Attr(
+            (text, "Searching")
+            (top, 20)
+            (height, 5)
+            (focusable, true)
+            (onFocus, [this] () { Dispatch(HomeAction::Select)(HomeMenu::Searching); })
+            (border, Props(selected) == HomeMenu::Searching ? '*' : '+')
+            (frontground, Props(selected) == HomeMenu::Searching ? TB_BOLD | TB_UNDERLINE : TB_DEFAULT)
+          )) { NoChildren};
+          Component(tr::Box, "Maths", Attr(
+            (text, "Maths")
+            (top, 30)
+            (height, 5)
+            (focusable, true)
+            (onFocus, [this] () { Dispatch(HomeAction::Select)(HomeMenu::Maths); })
+            (border, Props(selected) == HomeMenu::Maths ? '*' : '+')
+            (frontground, Props(selected) == HomeMenu::Maths ? TB_BOLD | TB_UNDERLINE : TB_DEFAULT)
+          )) { NoChildren};
+        };
+      }
+    };
   }
 
-  return arr;
-}
+public:
+  ComponentWillMount(App) {}
+  ComponentWillUnmount(App) {}
+  ComponentWillUpdate(next_props) {}
+};
 
 int main(int argc, char* argv[]) {
-  int choice = 0;
-  bool hideMenu = false;
-  bool verbose = false;
+  Store store;
+  tr::Termbox tb{store, TB_OUTPUT_NORMAL};
 
-  csfoundation::Controller _Controller = csfoundation::Controller(verbose);
-
-  std::vector<int> smallSample = readFileIntoArray("small-sample.txt");
-  std::vector<int> mediumSample = readFileIntoArray("medium-sample.txt");
-  std::vector<int> largeSample = readFileIntoArray("large-sample.txt");
-
-  std::cout << "Welcome to Foundations." << std::endl;
-
-  while(choice != 9) {
-    if (!hideMenu) {
-      std::cout
-        << "- - - - - - - - - - - - - - - - - - - - - - - - -" << std::endl
-        << "Choose an option:" << std::endl
-        << "  " << MENU_COMPLEXITY   << ") Basic Complexity Theory" << std::endl
-        << "  " << MENU_INSERTION   << ") Insertion Sort" << std::endl
-        << "  " << MENU_EXIT             << ") Exit" << std::endl;
-    }
-
-    std::cin >> choice;
-    switch(choice) {
-      case MENU_COMPLEXITY:
-        _Controller.printInfo("basic-complexity.md");
-        break;
-      case MENU_INSERTION:
-        _Controller.printInfo("insertion-sort.md");
-        _Controller.runAlgorithm<int>(csfoundation::sort::insertion<int>, smallSample);
-        _Controller.runAlgorithm<int>(csfoundation::sort::insertion<int>, mediumSample);
-        _Controller.runAlgorithm<int>(csfoundation::sort::insertion<int>, largeSample);
-        break;
-      case MENU_EXIT:
-        std::cout << "Exiting..." << std::endl;
-        break;
-      default:
-        hideMenu = true;
-        std::cout << "Invalid option. Please try again." << std::endl;
-        break;
-    }
-  }
-
+  tb.render<App>(store, [] (const Store::StateType &state) {
+    return false;
+  });
+  tb.runMainLoop();
   return 0;
 }
