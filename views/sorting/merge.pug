@@ -1,5 +1,201 @@
 extends ../layout
 
 block content
-  h2 Merge Sort
-  p Coming soon!
+  div
+    h1 Merge Sort
+    p A divide-and-conquer sorting algorithm that divides the array into smaller sorted arrays, and then combines the results.
+
+  div.section
+    h3 Explanation
+    p Divide the unsorted list into n sublists, each containing 1 element (a list of 1 element is considered sorted). Repeatedly merge sublists to produce new sorted sublists until there is only 1 sublist remaining. This will be the sorted list.
+
+  div.section
+    h3 Performance
+    table.table.table-bordered
+      thead
+        tr.active
+          th.col-xs-3 Operation
+          th.col-xs-3 Average
+          th.col-xs-3 Worst
+          th.col-xs-3 Best
+      tbody
+        tr
+          td Comparisons
+          td O(n log(n))
+          td O(n log(n))
+          td O(n log(n))
+
+  div.section
+    ul.nav.nav-tabs
+      li.active
+        a(data-toggle="tab" href="#pseudo") Pseudo
+      li
+        a(data-toggle="tab" href="#haskell") Haskell
+      li
+        a(data-toggle="tab" href="#js") JavaScript
+      li
+        a(data-toggle="tab" href="#cpp") C++
+    div.tab-content
+      div#pseudo.tab-pane.fade.in.active
+        pre.code-block
+          code
+            | procedure mergesort( var a as array )
+            |   if ( n == 1 ) return a
+            |
+            |   var l1 as array = a[0] ... a[n/2]
+            |   var l2 as array = a[n/2+1] ... a[n]
+            |
+            |   l1 = mergesort( l1 )
+            |   l2 = mergesort( l2 )
+            |
+            |   return merge( l1, l2 )
+            | end procedure
+            |
+            | procedure merge( var a as array, var b as array )
+            |
+            |   var c as array
+            |
+            |   while ( a and b have elements )
+            |     if ( a[0] &#62; b[0] )
+            |       add b[0] to the end of c
+            |       remove b[0] from b
+            |     else
+            |       add a[0] to the end of c
+            |       remove a[0] from a
+            |     end if
+            |   end while
+            |
+            |   while ( a has elements )
+            |     add a[0] to the end of c
+            |     remove a[0] from a
+            |   end while
+            |
+            |   while ( b has elements )
+            |     add b[0] to the end of c
+            |     remove b[0] from b
+            |   end while
+            |
+            |   return c
+            |
+            | end procedure
+      div#haskell.tab-pane.fade.in
+        pre.code-block
+          code
+            | split_list::[a]-&#62;([a],[a])
+            | split_list x = splitAt (div (length x) $ 2) x
+            |
+            | merge_sort::Ord a=&#62;[a]-&#62;[a]
+            | merge_sort x
+            |     | length x == 0 = []
+            |     | length x == 1 = x
+            |     | length x &#62; 1 = merge (merge_sort left) (merge_sort right)
+            |         where (left,right)=split_list x
+            |
+            | merge::Ord a=&#62;[a]-&#62;[a]-&#62;[a]
+            | merge [] r = r
+            | merge l [] = l
+            | merge l@(l':ls) r@(r':rs)
+            |     | l' &#60; r' =  l' : merge ls r
+            |     | otherwise = r' : merge rs l
+      div#js.tab-pane.fade.in
+        pre.code-block
+          code
+            | var a = [34, 203, 3, 746, 200, 984, 198, 764, 9];
+            | function mergeSort(arr) {
+            |   if (arr.length &#60; 2) return arr;
+            |
+            |   var middle = parseInt(arr.length / 2);
+            |   var left   = arr.slice(0, middle);
+            |   var right  = arr.slice(middle, arr.length);
+            |
+            |   return merge(mergeSort(left), mergeSort(right));
+            | }
+            |
+            | function merge(left, right) {
+            |   var result = [];
+            |
+            |   while (left.length && right.length) {
+            |     if (left[0] &#60;= right[0]) {
+            |       result.push(left.shift());
+            |     }
+            |     else {
+            |       result.push(right.shift());
+            |     }
+            |   }
+            |
+            |   while (left.length) result.push(left.shift());
+            |
+            |   while (right.length) result.push(right.shift());
+            |
+            |   return result;
+            | }
+      div#cpp.tab-pane.fade.in
+        pre.code-block
+          code
+            | #include &#60;iostream&#62;
+            | #include &#60;vector&#62;
+            | #include &#60;algorithm&#62;
+            |
+            | using namespace std;
+            |
+            | void merge(vector&#60;int&#62; &arr, int l, int m, int r) {
+            |     int i, j, k;
+            |     int n1 = m - l + 1;
+            |     int n2 =  r - m;
+            |
+            |     vector&#60;int&#62; L(n1);
+            |     vector&#60;int&#62; R(n2);
+            |
+            |     for(i = 0; i &#60; n1; i++)
+            |         L[i] = arr[l + i];
+            |     for(j = 0; j &#60; n2; j++)
+            |         R[j] = arr[m + 1+ j];
+            |
+            |     i = 0;
+            |     j = 0;
+            |     k = l;
+            |     while (i &#60; n1 && j &#60; n2)
+            |     {
+            |         if (L[i] &#60;= R[j])
+            |         {
+            |             arr[k] = L[i];
+            |             i++;
+            |         }
+            |         else
+            |         {
+            |             arr[k] = R[j];
+            |             j++;
+            |         }
+            |         k++;
+            |     }
+            |
+            |     while (i &#60; n1)
+            |     {
+            |         arr[k] = L[i];
+            |         i++;
+            |         k++;
+            |     }
+            |
+            |     while (j &#60; n2)
+            |     {
+            |         arr[k] = R[j];
+            |         j++;
+            |         k++;
+            |     }
+            | }
+            |
+            | void mergeSort(vector&#60;int&#62; &arr, int l, int r) {
+            |     if (l &#60; r)
+            |     {
+            |         int m = l+(r-l)/2;
+            |         mergeSort(arr, l, m);
+            |         mergeSort(arr, m+1, r);
+            |         merge(arr, l, m, r);
+            |     }
+            | }
+    div.section
+      script(src="/javascripts/sorting/merge.js")
+      h3 Demonstration
+      p Insert dynamic demo graphics and stuff here
+      include ../demo.pug
+
