@@ -2,16 +2,16 @@ extends ../layout
 
 block content
   div
-    h2 Insertion Sort
+    h1 Insertion Sort
     p An iterative sorting algorithm that incrementally places each element in its correct location.
 
   div.section
-    h4 Explanation
-    p Insertion Sort iterates over the input data, removing an element each time and inserting it into its correct place. It finds the correct location by iteratively comparing the element to the already-placed elements.</p>
-    p This is traditionally achieved by moving up the input list and inserting elements behind the iterator. Each value is checked against the largest value in the sorted (sub-)list. If it's larger, the element is left in place. If it's smaller, the values are swapped and the comparison carried out again. In this way, the smaller value keeps moving down the list until it is in place.</p>
+    h3 Explanation
+    p Insertion Sort iterates over the input data, removing an element each time and inserting it into its correct place. It finds the correct location by iteratively comparing the element to the already-placed elements.
+    p This is traditionally achieved by moving up the input list and inserting elements behind the iterator. Each value is checked against the largest value in the sorted (sub-)list. If it's larger, the element is left in place. If it's smaller, the values are swapped and the comparison carried out again. In this way, the smaller value keeps moving down the list until it is in place.
 
   div.section
-    h4 Performance
+    h3 Performance
     table.table.table-bordered
       thead
         tr.active
@@ -48,9 +48,9 @@ block content
         pre.code-block
           code
             | i ← 1
-            | while i < length(A)
+            | while i &#60; length(A)
             |   j ← i
-            |   while j > 0 and A[j] < A[j-1]
+            |   while j &#62; 0 and A[j] &#60; A[j-1]
             |     swap A[j] and A[j-1]
             |     j ← j - 1
             |   end while
@@ -62,9 +62,9 @@ block content
             | function insertionSort() {
             |   var length = array.length;
             |
-            |   for(var i = 1; i < length; i++) {
+            |   for(var i = 1; i &#60; length; i++) {
             |     var temp = array[i];
-            |     for(var j = i - 1; j >= 0 && array[j] > temp; j--) {
+            |     for(var j = i - 1; j &#62;= 0 && array[j] &#62; temp; j--) {
             |       array[j+1] = array[j];
             |     }
             |     array[j+1] = temp;
@@ -78,11 +78,11 @@ block content
             | void insertionSort(vector&#60;int&#62; &arr) {
             |   int key, j;
             |
-            |   for(int i = 1; i < arr.size(); i++) {
+            |   for(int i = 1; i &#60; arr.size(); i++) {
             |     key = arr[i];
             |     j = i - 1;
             |
-            |     while(j >= 0 && arr[j] > key) {
+            |     while(j &#62;= 0 && arr[j] &#62; key) {
             |       arr[j+1] = arr[j];
             |       j--;
             |     }
@@ -94,11 +94,11 @@ block content
         pre.code-block
           code
             | void insertionSort(int arr[]) {
-            |   for (int i = 1; i < arr.length; ++i) {
+            |   for (int i = 1; i &#60; arr.length; ++i) {
             |     int key = arr[i];
             |     int j = i - 1;
             |
-            |     while (j >= 0 && arr[j] > key) {
+            |     while (j &#62;= 0 && arr[j] &#62; key) {
             |       arr[j + 1] = arr[j];
             |       j = j - 1;
             |     }
@@ -112,7 +112,7 @@ block content
             | def insertion_sort(array):
             |   for i in range(len(array)):
             |     j = i
-            |     while j > 0 and array[j - 1] > array[j]:
+            |     while j &#62; 0 and array[j - 1] &#62; array[j]:
             |       array = swap(array, j, j - 1)
             |       j -= 1
             |
@@ -126,6 +126,6 @@ block content
 
   div.section
     script(src="/javascripts/sorting/insertion.js")
-    h4 Demonstration
+    h3 Demonstration
     p Insert dynamic demo graphics and stuff here
     include ../demo.pug
