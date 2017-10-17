@@ -1,5 +1,254 @@
 extends ../layout
 
 block content
-  h2 Heapsort
-  p Coming soon!
+  div
+    h2 Heapsort
+    p A comparison based sorting technique based on Binary Heap data structure
+
+  div.section
+    h4 Explanation
+    p 1. Build a max heap from the input data.
+    p 2. At this point, the largest item is stored at the root of the heap. Replace it with the last item of the heap followed by reducing the size of heap by 1. Finally, heapify the root of tree.
+    p 3. Repeat above steps while size of heap is greater than 1.
+
+  div.section
+    h4 Performance
+    table.table.table-bordered
+      thead
+        tr.active
+          th.col-xs-3 Operation
+          th.col-xs-3 Average
+          th.col-xs-3 Worst
+          th.col-xs-3 Best
+      tbody
+        tr
+          td Comparisons
+          td O(n log(n))
+          td O(n log(n))
+          td O(n log(n))
+
+  div.section
+    ul.nav.nav-tabs
+      li.active
+        a(data-toggle="tab" href="#pseudo") Pseudo
+      li
+        a(data-toggle="tab" href="#rust") Rust
+      li
+        a(data-toggle="tab" href="#js") JavaScript
+      li
+        a(data-toggle="tab" href="#cpp") C++
+    div.tab-content
+      div#pseudo.tab-pane.fade.in.active
+        pre.code-block
+          code
+            | procedure heapsort(a, count) is
+            |     input: an unordered array a of length count
+            |  
+            |     (Build the heap in array a so that largest value is at the root)
+            |     heapify(a, count)
+            | 
+            |     (The following loop maintains the invariants that a[0:end] is a heap and every element
+            |      beyond end is greater than everything before it (so a[end:count] is in sorted order))
+            |     end ← count - 1
+            |     while end > 0 do
+            |         (a[0] is the root and largest value. The swap moves it in front of the sorted elements.)
+            |         swap(a[end], a[0])
+            |         (the heap size is reduced by one)
+            |         end ← end - 1
+            |         (the swap ruined the heap property, so restore it)
+            |         siftDown(a, 0, end)
+            | 
+            |  procedure heapify(a,count) is
+            |      (end is assigned the index of the first (left) child of the root)
+            |      end := 1
+            |      
+            |      while end < count
+            |          (sift up the node at index end to the proper place such that all nodes above
+            |           the end index are in heap order)
+            |          siftUp(a, 0, end)
+            |          end := end + 1
+            |      (after sifting up the last node all nodes are in heap order)
+            |  
+            |  procedure siftUp(a, start, end) is
+            |      input:  start represents the limit of how far up the heap to sift.
+            |                    end is the node to sift up.
+            |      child := end 
+            |      while child > start
+            |          parent := iParent(child)
+            |          if a[parent] < a[child] then (out of max-heap order)
+            |              swap(a[parent], a[child])
+            |              child := parent (repeat to continue sifting up the parent now)
+            |          else
+            |              return
+      div#rust.tab-pane.fade.in
+        pre.code-block
+          code
+            | // Part of Cosmos by OpenGenus Foundation
+            | 
+            | fn heapify(arr: &mut [i32], n: usize, i: usize){
+            |     let mut largest = i; //largest as root
+            |     let l = 2*i + 1; //left
+            |     let r = 2*i + 2; //right
+            | 
+            |     //if child larger than root
+            |     if l < n && arr[l as usize] > arr[largest as usize]{
+            |         largest = l;
+            |     }
+            | 
+            |     //if child larger than largest
+            |     if r < n && arr[r as usize] > arr[largest as usize]{
+            |         largest = r;
+            |     }
+            | 
+            |     //if largest is not root
+            |     if largest != i{
+            |         let temp = arr[i as usize];
+            |         arr[i as usize] = arr[largest as usize];
+            |         arr[largest as usize] = temp;
+            | 
+            |         //recursively heapify
+            |         heapify(arr, n, largest);
+            |     }
+            | }
+            | 
+            | fn heap_sort(arr: &mut [i32], n: usize){
+            |     //build heap
+            |     for i in (0..n / 2 - 1).rev(){
+            |         heapify(arr, n, i);
+            |     }
+            | 
+            |     for i in (0..n - 1).rev(){
+            |         //move current root to end
+            |         let temp = arr[i as usize];
+            |         arr[i as usize] = arr[0];
+            |         arr[0] = temp;
+            | 
+            |         heapify(arr, i, 0);
+            |     }
+            | }
+            | 
+            | fn print_array(arr: &mut [i32], n: usize){
+            |     for i in (0..n).rev(){
+            |         print!("{} ", arr[i as usize]);
+            |     }
+            |     println!("");
+            | }
+            | 
+            | //test heap sort
+            | fn main() {
+            |     let mut arr: [i32; 8] = [1, 2, 3, 4, 5, 6, 7, 8];
+            |     let n: usize = arr.len();
+            | 
+            |     heap_sort(&mut arr, n);
+            | 
+            |     println!("Sorted Array:");
+            |     print_array(&mut arr, n);
+            | }
+      div#js.tab-pane.fade.in
+        pre.code-block
+          code
+            | /*
+            | * Part of Cosmos by OpenGenus Foundation
+            | */
+            | 
+            | var arrayLength;
+            | 
+            | function heap_root(inputArray, i) {
+            | 	var left = 2 * i + 1;
+            | 	var right = 2 * i + 2;
+            | 	var max = i;
+            | 
+            | 	if (left < arrayLength && inputArray[left] > inputArray[max]) {
+            | 		max = left;
+            | 	}
+            | 
+            | 	if (right < arrayLength && inputArray[right] > inputArray[max]) {
+            | 		max = right;
+            | 	}
+            | 
+            | 	if (max != i) {
+            | 		swap(inputArray, i, max);
+            | 		heap_root(inputArray, max);
+            | 	}
+            | }
+            | 
+            | function swap(inputArray, index_A, index_B) {
+            | 	var temp = inputArray[index_A];
+            | 
+            | 	inputArray[index_A] = inputArray[index_B];
+            | 	inputArray[index_B] = temp;
+            | }
+            | 
+            | function heapSort(inputArray) {
+            | 
+            | 	arrayLength = inputArray.length;
+            | 
+            | 	for (var i = Math.floor(arrayLength / 2); i >= 0; i -= 1) {
+            | 		heap_root(inputArray, i);
+            | 	}
+            | 
+            | 	for (i = inputArray.length - 1; i > 0; i--) {
+            | 		swap(inputArray, 0, i);
+            | 		arrayLength--;
+            | 		heap_root(inputArray, 0);
+            | 	}
+            | }
+      div#cpp.tab-pane.fade.in
+        pre.code-block
+          code
+            | /* Part of Cosmos by OpenGenus Foundation */
+            | #include <bits/stdc++.h>
+            | using namespace std;
+            | 
+            | void heapify (vector<int> &v, int n, int i)
+            | {
+            |     int largest = i;
+            |     int l = 2 * i + 1;
+            |     int r = 2 * i + 2;
+            | 
+            |     if (l < n && v[l] > v[largest])
+            |         largest = l;
+            |     if (r < n && v[r] > v[largest])
+            |         largest = r;
+            |     if (largest != i)
+            |     {
+            |         swap(v[i], v[largest]);
+            |         heapify(v, n, largest);
+            |     }
+            | }
+            | 
+            | // The heap sort function that should be called
+            | void heap_sort(vector<int> &v)
+            | {
+            |     int n = v.size();
+            | 
+            |     // Build heap (rearrange array)
+            |     for(int i = n / 2 - 1; i >= 0; --i)
+            |         heapify(v, n, i);
+            |     // Extract element from heap 1 by 1
+            |     for(int i = n - 1; i >= 0; --i)
+            |     {
+            |         swap(v[0], v[i]);
+            |         heapify(v, i, 0);
+            |     }
+            | }
+            | 
+            | 
+            | // Testing the heap sort implementation
+            | int main()
+            | {
+            |     vector<int> v = {2, 3, 6, 7, 4, 1};
+            |     heap_sort(v);
+            |     for(int i = 0; i < v.size(); ++i)
+            |     {
+            |         cout << v[i] << " ";
+            |     }	
+            |     return 0;
+            | }
+  div.section
+    script(src="/javascripts/sorting/heapsort.js")
+    h4 Demonstration
+    p Insert dynamic demo graphics and stuff here
+    include ../demo.pug
+
+
